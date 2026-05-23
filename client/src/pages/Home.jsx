@@ -23,6 +23,12 @@ export default function Home() {
     if (location.state?.remixImage) {
       handleUpload(location.state.remixImage)
       window.history.replaceState({}, '')
+    } else if (location.state?.backToEditor) {
+      setImage(location.state.image)
+      setSelected(location.state.suggestion)
+      setSuggestions(location.state.suggestions || [])
+      setStep('edit')
+      window.history.replaceState({}, '')
     }
   }, [])
 
@@ -62,7 +68,7 @@ export default function Home() {
   const handleShare = async (memeData) => {
     try {
       const { data } = await axios.post(`${API}/api/meme/share`, memeData)
-      navigate(`/meme/${data.id}`)
+      navigate(`/meme/${data.id}`, { state: { fromEditor: true, image, suggestion: selected, suggestions } })
     } catch (err) {
       console.error(err)
     }
@@ -72,15 +78,18 @@ export default function Home() {
 
   return (
     <main className="max-w-7xl mx-auto px-3 sm:px-4 py-6 md:py-16">
+      {/* Floating comedy emojis - always on landing */}
+      {step === 'upload' && (
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+          {['😂', '🤣', '🤡', '😂', '🤣', '🤡', '😂', '🤣', '🤡', '😂', '🤣', '🤡'].map((emoji, i) => (
+            <span key={i} className="absolute text-3xl sm:text-4xl float-up" style={{ left: `${5 + (i * 8) % 90}%`, bottom: `${(i * 7) % 40}%`, animationDelay: `-${i * 0.6}s`, animationDuration: `${5 + (i % 3)}s` }}>{emoji}</span>
+          ))}
+        </div>
+      )}
+
       {/* Hero */}
       {step === 'upload' && (
         <div className="text-center mb-12 fade-in relative">
-          {/* Floating emojis background */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-            {['😂', '🔥', '💀', '🤡', '❤️', '✨'].map((emoji, i) => (
-              <span key={i} className="absolute text-2xl sm:text-3xl opacity-20 float-emoji" style={{ left: `${10 + i * 15}%`, top: `${20 + (i % 3) * 25}%`, animationDelay: `${i * 0.5}s` }}>{emoji}</span>
-            ))}
-          </div>
 
           <div className="inline-block px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 text-xs font-semibold mb-6 slide-up">
             ✨ Powered by AI Vision

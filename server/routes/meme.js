@@ -39,7 +39,7 @@ router.post('/suggest', rateLimit, async (req, res) => {
       messages: [{
         role: 'user',
         content: [
-          { type: 'text', text: `You are a meme expert. Look at this image and generate exactly 6 different meme suggestions. Each should use a different template format and be genuinely funny, specific to what's in the image.
+          { type: 'text', text: `You are a meme expert. Look at this image and generate exactly 7 different meme suggestions. Each should use a different template format and be genuinely funny, specific to what's in the image.
 
 Return ONLY valid JSON in this exact format:
 {
@@ -48,6 +48,7 @@ Return ONLY valid JSON in this exact format:
     { "templateId": "modern-caption", "texts": { "caption": "..." } },
     { "templateId": "demotivational", "texts": { "title": "...", "subtitle": "..." } },
     { "templateId": "twitter-post", "texts": { "tweet": "..." } },
+    { "templateId": "expanding-brain", "texts": { "setup": "..." } },
     { "templateId": "nobody", "texts": { "nobody": "Nobody:", "me": "Me: ..." } },
     { "templateId": "drake", "texts": { "reject": "...", "prefer": "..." } }
   ]
@@ -104,8 +105,8 @@ router.get('/wall/today', async (req, res) => {
 // POST /api/meme/share - Save meme for sharing
 router.post('/share', async (req, res) => {
   try {
-    const { image, texts, templateId } = req.body
-    const meme = await Meme.create({ image, texts, templateId })
+    const { image, texts, templateId, positions, textColor, bgColor } = req.body
+    const meme = await Meme.create({ image, texts, templateId, positions, textColor, bgColor })
     const io = req.app.get('io')
     if (io) io.to('wall').emit('wall-new-meme', { _id: meme._id, image, texts: Object.fromEntries(meme.texts), templateId, reactions: {}, totalReactions: 0, createdAt: meme.createdAt })
     res.json({ id: meme._id, url: `/meme/${meme._id}` })
@@ -124,6 +125,9 @@ router.get('/:id', async (req, res) => {
       image: meme.image,
       texts: Object.fromEntries(meme.texts),
       templateId: meme.templateId,
+      positions: meme.positions ? Object.fromEntries(meme.positions) : {},
+      textColor: meme.textColor || '#ffffff',
+      bgColor: meme.bgColor || 'transparent',
       reactions: Object.fromEntries(meme.reactions),
       createdAt: meme.createdAt
     })

@@ -24,8 +24,8 @@ export const templates = [
     name: 'Demotivational',
     description: 'Black border with title and subtitle',
     textPositions: [
-      { id: 'title', x: 50, y: 85, fontSize: 42, fontFamily: 'Times New Roman', color: '#ffffff', stroke: 'none', strokeWidth: 0, align: 'center', maxWidth: 80 },
-      { id: 'subtitle', x: 50, y: 93, fontSize: 20, fontFamily: 'Times New Roman', color: '#cccccc', stroke: 'none', strokeWidth: 0, align: 'center', maxWidth: 80 }
+      { id: 'title', x: 50, y: 10, fontSize: 36, fontFamily: 'Times New Roman', color: '#ffffff', stroke: 'none', strokeWidth: 0, align: 'center', maxWidth: 80 },
+      { id: 'subtitle', x: 50, y: 78, fontSize: 18, fontFamily: 'Times New Roman', color: '#cccccc', stroke: 'none', strokeWidth: 0, align: 'center', maxWidth: 80 }
     ],
     imageStyle: { fit: 'contain', borderRadius: 0, border: '3px solid #333', background: '#000000', padding: 40 }
   },
@@ -52,8 +52,8 @@ export const templates = [
     name: 'Nobody:',
     description: 'Nobody: ... Me: [image]',
     textPositions: [
-      { id: 'nobody', x: 50, y: -12, fontSize: 24, fontFamily: 'Inter', color: '#000000', stroke: 'none', strokeWidth: 0, align: 'left', maxWidth: 90, background: '#ffffff', padding: 16 },
-      { id: 'me', x: 50, y: -5, fontSize: 24, fontFamily: 'Inter', color: '#000000', stroke: 'none', strokeWidth: 0, align: 'left', maxWidth: 90, background: '#ffffff', padding: 16 }
+      { id: 'nobody', x: 50, y: 8, fontSize: 24, fontFamily: 'Inter', color: '#ffffff', stroke: '#000000', strokeWidth: 1, align: 'left', maxWidth: 90 },
+      { id: 'me', x: 50, y: 22, fontSize: 24, fontFamily: 'Inter', color: '#ffffff', stroke: '#000000', strokeWidth: 1, align: 'left', maxWidth: 90 }
     ],
     imageStyle: { fit: 'cover', borderRadius: 8, marginTop: 100 }
   },
