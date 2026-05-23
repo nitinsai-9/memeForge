@@ -8,16 +8,11 @@ Upload a photo → AI generates 6 meme ideas → Pick one (or feel lucky) → Ed
 
 | | |
 |---|---|
-| ![Landing](./screenshots/01.png) | ![Upload](./screenshots/02.png) |
-| Landing Page | Upload Area |
-| ![Suggestions](./screenshots/03.png) | ![Editor](./screenshots/04.png) |
-| AI Suggestions | Meme Editor |
-| ![Colors](./screenshots/05.png) | ![Share](./screenshots/06.png) |
-| Color Picker | Share Page |
-| ![Reactions](./screenshots/07.png) | ![Wall](./screenshots/08.png) |
-| Live Reactions | Meme Wall |
-| ![Dark Mode](./screenshots/09.png) | ![Mobile](./screenshots/10.png) |
-| Dark Mode | Mobile View |
+| ![](./screenshots/01.png) | ![](./screenshots/02.png) |
+| ![](./screenshots/03.png) | ![](./screenshots/04.png) |
+| ![](./screenshots/05.png) | ![](./screenshots/06.png) |
+| ![](./screenshots/07.png) | ![](./screenshots/08.png) |
+| ![](./screenshots/09.png) | ![](./screenshots/10.png) |
 
 ---
 

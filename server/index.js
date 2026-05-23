@@ -18,7 +18,14 @@ app.use('/api/meme', memeRoutes)
 
 // Socket.IO for live reactions
 io.on('connection', (socket) => {
-  socket.on('join', (memeId) => socket.join(memeId))
+  socket.on('join', async (memeId) => {
+    socket.join(memeId)
+    try {
+      const Meme = (await import('./models/Meme.js')).default
+      const meme = await Meme.findById(memeId)
+      if (meme) socket.emit('reactions', Object.fromEntries(meme.reactions))
+    } catch (err) {}
+  })
   socket.on('join-wall', () => socket.join('wall'))
   socket.on('react', async ({ memeId, emoji }) => {
     try {
